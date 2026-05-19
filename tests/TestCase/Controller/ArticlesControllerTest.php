@@ -1,46 +1,82 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Test\TestCase\Controller;
 
-class ArticlesController extends AppController
+use App\Controller\ArticlesController;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
+
+/**
+ * App\Controller\ArticlesController Test Case
+ *
+ * @link \App\Controller\ArticlesController
+ */
+class ArticlesControllerTest extends TestCase
 {
-    public function index(): void
-    {
-        $articles = $this->Articles->find('all')
-            ->where(['published' => true])
-            ->orderBy(['created' => 'DESC']);
+    use IntegrationTestTrait;
 
-        $this->set(compact('articles'));
+    /**
+     * Fixtures
+     *
+     * @var array<string>
+     */
+    protected array $fixtures = [
+        'app.Articles',
+    ];
+
+    /**
+     * Test index method
+     *
+     * @return void
+     * @link \App\Controller\ArticlesController::index()
+     */
+    public function testIndex(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
     }
 
-    public function view(?string $slug = null): void
+    /**
+     * Test view method
+     *
+     * @return void
+     * @link \App\Controller\ArticlesController::view()
+     */
+    public function testView(): void
     {
-        $article = $this->Articles
-            ->findBySlug($slug)
-            ->firstOrFail();
-
-        $this->set(compact('article'));
+        $this->markTestIncomplete('Not implemented yet.');
     }
 
-    public function add(): void
+    /**
+     * Test add method
+     *
+     * @return void
+     * @link \App\Controller\ArticlesController::add()
+     */
+    public function testAdd(): void
     {
-        $article = $this->Articles->newEmptyEntity();
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 
-        if ($this->request->is('post')) {
-            $article = $this->Articles->patchEntity(
-                $article,
-                $this->request->getData()
-            );
+    /**
+     * Test edit method
+     *
+     * @return void
+     * @link \App\Controller\ArticlesController::edit()
+     */
+    public function testEdit(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 
-            if ($this->Articles->save($article)) {
-                $this->Flash->success('Article saved!');
-                return $this->redirect(['action' => 'index']);
-            }
-
-            $this->Flash->error('Unable to save article.');
-        }
-
-        $this->set(compact('article'));
+    /**
+     * Test delete method
+     *
+     * @return void
+     * @link \App\Controller\ArticlesController::delete()
+     */
+    public function testDelete(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
     }
 }

@@ -50,26 +50,4 @@ class ArticlesTableTest extends TestCase
 
         parent::tearDown();
     }
-
-    /**
-     * Test validationDefault method
-     *
-     * @return void
-     * @link \App\Model\Table\ArticlesTable::validationDefault()
-     */
-    public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     * @link \App\Model\Table\ArticlesTable::buildRules()
-     */
-    public function testBuildRules(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
 }
