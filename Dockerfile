@@ -1,21 +1,20 @@
 FROM php:8.2-cli
 
+RUN apt-get update && apt-get install -y \
+ unzip \
+ git \
+ libicu-dev \
+ && docker-php-ext-install intl \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN curl -sS https://getcomposer.org/installer | php \
+ && mv composer.phar /usr/local/bin/composer
+
 WORKDIR /app
 
-# instalar dependencias necesarias + intl
-RUN apt-get update && apt-get install -y \
-    unzip \
-    git \
-    libicu-dev \
-    && docker-php-ext-install intl
-
-# instalar composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY composer.json composer.lock ./
+RUN composer install --optimize-autoloader --no-scripts --no-interaction
 
 COPY . .
 
-RUN composer install
-
-EXPOSE 8080
-
-CMD php -S 0.0.0.0:$PORT -t webroot
+CMD php -S 0.0.0.0:${PORT:-8080} -t webroot
